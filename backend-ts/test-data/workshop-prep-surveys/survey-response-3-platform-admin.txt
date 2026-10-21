@@ -1,0 +1,7 @@
+PRE-WORKSHOP SURVEY (SYNTHETIC)
+Client: Meridian Retail Group (fictional)
+Respondent: Sam Ortiz, Platform Administrator
+
+Environment: single production instance, non-production refresh quarterly.
+Integrations: email ingestion, monitoring alerts, HR feed for org data.
+Constraints: maintenance windows limited to weekends; prefer feature flags over big-bang releases.

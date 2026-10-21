@@ -1,0 +1,6 @@
+PRE-WORKSHOP SURVEY (SYNTHETIC)
+Client: Meridian Retail Group (fictional)
+Respondent: Jordan Lee, ITSM Process Manager
+
+Priority ranking: (1) routing accuracy, (2) self-service deflection, (3) change success rate.
+Notes: analysts spend ~25% of shift reclassifying tickets; KB usage is low due to outdated articles.

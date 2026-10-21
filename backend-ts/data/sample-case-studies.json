@@ -1,0 +1,47 @@
+[
+  {
+    "id": "cs-001",
+    "title": "Regional bank ITSM routing modernization",
+    "description": "Phased ServiceNow improvements that increased first-assignment accuracy from 58% to 81% in six months.",
+    "industry": "Financial Services",
+    "tags": ["ITSM", "Automation", "Change Management"],
+    "client_company_name": "Fictional Regional Bank",
+    "url": "https://example.com/case-studies/regional-bank-itsm"
+  },
+  {
+    "id": "cs-002",
+    "title": "SaaS scale-up agile portfolio alignment",
+    "description": "Introduced portfolio cadences and tooling standards across 40 teams without slowing release trains.",
+    "industry": "Software",
+    "tags": ["Agile", "Portfolio", "Jira Align"],
+    "client_company_name": "Helios Analytics (fictional)",
+    "url": "https://example.com/case-studies/saas-portfolio-alignment"
+  },
+  {
+    "id": "cs-003",
+    "title": "Retail group virtual agent pilot",
+    "description": "Piloted tier-one deflection with human-in-the-loop review, achieving 22% auto-resolution in 90 days.",
+    "industry": "Retail",
+    "tags": ["Virtual Agent", "AI", "Service Desk"],
+    "client_company_name": "Meridian Retail Group (fictional)",
+    "url": "https://example.com/case-studies/retail-virtual-agent"
+  },
+  {
+    "id": "cs-004",
+    "title": "Payments platform engineering enablement",
+    "description": "Unified documentation practices and AI-assisted code review guardrails for a regulated fintech engineering org.",
+    "industry": "Fintech",
+    "tags": ["DevOps", "AI Enablement", "Knowledge Management"],
+    "client_company_name": "NovaPay Systems (fictional)",
+    "url": "https://example.com/case-studies/payments-engineering-enablement"
+  },
+  {
+    "id": "cs-005",
+    "title": "Manufacturing CMDB accuracy program",
+    "description": "Service mapping workshops and automated discovery improved CMDB accuracy from 41% to 78%.",
+    "industry": "Manufacturing",
+    "tags": ["CMDB", "Discovery", "ITOM"],
+    "client_company_name": "Northwind Manufacturing (fictional)",
+    "url": "https://example.com/case-studies/manufacturing-cmdb"
+  }
+]

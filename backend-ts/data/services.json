@@ -1,0 +1,248 @@
+{
+  "atlassian_services": [
+    {
+      "id": "atlassian-jira-implementation",
+      "name": "Jira Software Implementation",
+      "provider": "Atlassian",
+      "category": "Project Management",
+      "description": "Complete implementation and configuration of Jira Software for agile project management, including scrum and kanban boards, custom workflows, automation rules, and team onboarding.",
+      "key_features": ["Agile boards", "Custom workflows", "Automation", "Reporting", "Issue tracking"],
+      "use_cases": ["Software development", "Agile project management", "Bug tracking", "Sprint planning"],
+      "typical_duration": "4-12 weeks",
+      "complexity": "Medium"
+    },
+    {
+      "id": "atlassian-jira-service-management",
+      "name": "Jira Service Management Implementation",
+      "provider": "Atlassian",
+      "category": "ITSM",
+      "description": "End-to-end implementation of Jira Service Management (formerly Jira Service Desk) for IT service management, including incident management, change management, asset management, and self-service portal configuration.",
+      "key_features": ["Incident management", "Change management", "Asset management", "Self-service portal", "SLA tracking"],
+      "use_cases": ["IT service desk", "HR service management", "Facilities management", "Customer support"],
+      "typical_duration": "6-16 weeks",
+      "complexity": "Medium-High"
+    },
+    {
+      "id": "atlassian-confluence-deployment",
+      "name": "Confluence Deployment & Knowledge Management",
+      "provider": "Atlassian",
+      "category": "Collaboration",
+      "description": "Deployment and configuration of Confluence for enterprise knowledge management, documentation, team collaboration, and content governance with templates, spaces, and permissions setup.",
+      "key_features": ["Knowledge base", "Team spaces", "Page templates", "Collaborative editing", "Content governance"],
+      "use_cases": ["Documentation", "Knowledge management", "Team collaboration", "Project wikis"],
+      "typical_duration": "3-8 weeks",
+      "complexity": "Low-Medium"
+    },
+    {
+      "id": "atlassian-bitbucket-devops",
+      "name": "Bitbucket & CI/CD Pipeline Setup",
+      "provider": "Atlassian",
+      "category": "DevOps",
+      "description": "Implementation of Bitbucket for source code management with integrated CI/CD pipelines, branch permissions, merge workflows, and integration with Jira for end-to-end development tracking.",
+      "key_features": ["Git repositories", "Pull requests", "CI/CD pipelines", "Branch permissions", "Code review"],
+      "use_cases": ["Source control", "Code review", "Continuous integration", "Deployment automation"],
+      "typical_duration": "4-10 weeks",
+      "complexity": "Medium-High"
+    },
+    {
+      "id": "atlassian-jira-align",
+      "name": "Jira Align Enterprise Agile Planning",
+      "provider": "Atlassian",
+      "category": "Enterprise Agile",
+      "description": "Implementation of Jira Align for enterprise agile planning and scaled agile framework (SAFe) adoption, including portfolio management, program increment planning, and value stream mapping.",
+      "key_features": ["Portfolio management", "PI planning", "OKR tracking", "Value streams", "Dependency mapping"],
+      "use_cases": ["SAFe implementation", "Enterprise agile transformation", "Portfolio planning", "Program management"],
+      "typical_duration": "12-24 weeks",
+      "complexity": "High"
+    },
+    {
+      "id": "atlassian-opsgenie-incident",
+      "name": "Opsgenie Incident Management",
+      "provider": "Atlassian",
+      "category": "Incident Management",
+      "description": "Implementation of Opsgenie for alert management, on-call scheduling, incident response automation, and integration with monitoring tools for DevOps and SRE teams.",
+      "key_features": ["Alert routing", "On-call scheduling", "Incident response", "ChatOps integration", "Post-mortems"],
+      "use_cases": ["Incident management", "On-call management", "Alert aggregation", "SRE operations"],
+      "typical_duration": "3-6 weeks",
+      "complexity": "Medium"
+    },
+    {
+      "id": "atlassian-statuspage",
+      "name": "Statuspage Communication Platform",
+      "provider": "Atlassian",
+      "category": "Status Communication",
+      "description": "Setup and configuration of Statuspage for transparent service status communication, incident updates, and automated notifications to customers and stakeholders.",
+      "key_features": ["Status pages", "Incident communication", "Automated updates", "Subscriber management", "Metrics display"],
+      "use_cases": ["Service status communication", "Incident transparency", "Customer notifications", "SLA reporting"],
+      "typical_duration": "2-4 weeks",
+      "complexity": "Low"
+    },
+    {
+      "id": "atlassian-trello-enterprise",
+      "name": "Trello Enterprise Board Management",
+      "provider": "Atlassian",
+      "category": "Visual Project Management",
+      "description": "Enterprise deployment of Trello for visual project management with custom boards, power-ups, automation, and team workspace configuration.",
+      "key_features": ["Kanban boards", "Card automation", "Power-ups", "Team workspaces", "Templates"],
+      "use_cases": ["Visual task management", "Marketing campaigns", "Sales pipelines", "Personal productivity"],
+      "typical_duration": "2-6 weeks",
+      "complexity": "Low-Medium"
+    },
+    {
+      "id": "atlassian-cloud-migration",
+      "name": "Atlassian Cloud Migration",
+      "provider": "Atlassian",
+      "category": "Migration",
+      "description": "Complete migration of Atlassian products from Data Center/Server to Cloud, including data migration, app migration, SSO setup, and user training.",
+      "key_features": ["Data migration", "App compatibility", "SSO configuration", "Performance optimization", "User training"],
+      "use_cases": ["Cloud migration", "Infrastructure modernization", "Cost optimization", "Scalability improvement"],
+      "typical_duration": "8-20 weeks",
+      "complexity": "High"
+    },
+    {
+      "id": "atlassian-agile-coaching",
+      "name": "Agile Transformation & Coaching",
+      "provider": "Atlassian",
+      "category": "Consulting",
+      "description": "Comprehensive agile transformation services including process design, tool configuration, team coaching, and ongoing support for adopting agile methodologies with Atlassian tools.",
+      "key_features": ["Agile coaching", "Process design", "Tool optimization", "Team training", "Change management"],
+      "use_cases": ["Agile transformation", "Team enablement", "Process improvement", "Cultural change"],
+      "typical_duration": "12-26 weeks",
+      "complexity": "High"
+    }
+  ],
+  "servicenow_services": [
+    {
+      "id": "servicenow-itsm-implementation",
+      "name": "ServiceNow ITSM Implementation",
+      "provider": "ServiceNow",
+      "category": "ITSM",
+      "description": "Full implementation of ServiceNow IT Service Management including incident, problem, change, and knowledge management with ITIL-aligned processes and workflows.",
+      "key_features": ["Incident management", "Problem management", "Change management", "CMDB", "Knowledge base"],
+      "use_cases": ["IT service desk", "ITIL processes", "Service catalog", "Asset management"],
+      "typical_duration": "12-24 weeks",
+      "complexity": "High"
+    },
+    {
+      "id": "servicenow-itom-deployment",
+      "name": "ServiceNow ITOM Deployment",
+      "provider": "ServiceNow",
+      "category": "IT Operations",
+      "description": "Implementation of IT Operations Management including discovery, service mapping, event management, and cloud management for comprehensive infrastructure visibility.",
+      "key_features": ["Discovery", "Service mapping", "Event management", "Cloud management", "Automation"],
+      "use_cases": ["Infrastructure monitoring", "Service dependency mapping", "Cloud operations", "Automation"],
+      "typical_duration": "10-20 weeks",
+      "complexity": "High"
+    },
+    {
+      "id": "servicenow-hr-service-delivery",
+      "name": "HR Service Delivery Implementation",
+      "provider": "ServiceNow",
+      "category": "HR",
+      "description": "Deployment of ServiceNow HR Service Delivery for employee lifecycle management, HR case management, and employee self-service portal.",
+      "key_features": ["Employee onboarding", "HR case management", "Employee center", "Knowledge management", "Workflows"],
+      "use_cases": ["HR service delivery", "Employee experience", "HR case management", "Onboarding automation"],
+      "typical_duration": "8-16 weeks",
+      "complexity": "Medium-High"
+    },
+    {
+      "id": "servicenow-csm-platform",
+      "name": "Customer Service Management Platform",
+      "provider": "ServiceNow",
+      "category": "Customer Service",
+      "description": "Implementation of ServiceNow Customer Service Management for omnichannel customer support, case management, field service, and customer portal.",
+      "key_features": ["Omnichannel support", "Case management", "Field service", "Customer portal", "SLA management"],
+      "use_cases": ["Customer support", "Field service management", "Customer self-service", "Service delivery"],
+      "typical_duration": "10-18 weeks",
+      "complexity": "High"
+    },
+    {
+      "id": "servicenow-sec-ops",
+      "name": "Security Operations Implementation",
+      "provider": "ServiceNow",
+      "category": "Security",
+      "description": "Deployment of ServiceNow Security Operations for vulnerability response, threat intelligence, and security incident management with automated workflows.",
+      "key_features": ["Vulnerability management", "Threat intelligence", "Security incidents", "Risk management", "Compliance"],
+      "use_cases": ["Security operations", "Vulnerability management", "Threat response", "Compliance tracking"],
+      "typical_duration": "10-20 weeks",
+      "complexity": "High"
+    },
+    {
+      "id": "servicenow-itsm-pro",
+      "name": "ITSM Professional Services",
+      "provider": "ServiceNow",
+      "category": "ITSM",
+      "description": "Advanced ITSM professional services including performance analytics, predictive intelligence, and virtual agent implementation for enhanced service delivery.",
+      "key_features": ["Performance analytics", "Predictive intelligence", "Virtual agent", "Advanced reporting", "ML/AI"],
+      "use_cases": ["ITSM optimization", "Predictive analytics", "Automated support", "Service improvement"],
+      "typical_duration": "8-16 weeks",
+      "complexity": "High"
+    },
+    {
+      "id": "servicenow-grc-platform",
+      "name": "Governance, Risk & Compliance Platform",
+      "provider": "ServiceNow",
+      "category": "GRC",
+      "description": "Implementation of ServiceNow GRC for integrated risk management, policy and compliance management, audit management, and regulatory compliance.",
+      "key_features": ["Risk management", "Policy compliance", "Audit management", "Regulatory compliance", "Control testing"],
+      "use_cases": ["Enterprise risk management", "Compliance automation", "Audit tracking", "Policy management"],
+      "typical_duration": "12-20 weeks",
+      "complexity": "High"
+    },
+    {
+      "id": "servicenow-itbm-suite",
+      "name": "IT Business Management Suite",
+      "provider": "ServiceNow",
+      "category": "Project Portfolio Management",
+      "description": "Deployment of ITBM for project portfolio management, agile development, demand management, and resource planning with financial management integration.",
+      "key_features": ["Portfolio management", "Agile development", "Resource planning", "Financial management", "Demand management"],
+      "use_cases": ["Project portfolio management", "Agile planning", "Resource allocation", "IT financial management"],
+      "typical_duration": "10-18 weeks",
+      "complexity": "High"
+    },
+    {
+      "id": "servicenow-app-engine",
+      "name": "App Engine Custom Application Development",
+      "provider": "ServiceNow",
+      "category": "Custom Development",
+      "description": "Custom application development on ServiceNow App Engine platform using low-code tools, custom workflows, and integration with existing systems.",
+      "key_features": ["Low-code development", "Custom workflows", "Integration", "Mobile apps", "Reporting"],
+      "use_cases": ["Custom applications", "Workflow automation", "Process digitization", "Legacy modernization"],
+      "typical_duration": "8-24 weeks",
+      "complexity": "Medium-High"
+    },
+    {
+      "id": "servicenow-integration-hub",
+      "name": "Integration Hub & Spoke Implementation",
+      "provider": "ServiceNow",
+      "category": "Integration",
+      "description": "Implementation of ServiceNow Integration Hub for connecting ServiceNow with third-party applications, automating data synchronization, and building integration workflows.",
+      "key_features": ["Pre-built spokes", "Custom integrations", "Data synchronization", "API management", "Flow designer"],
+      "use_cases": ["System integration", "Data synchronization", "Automation", "API connectivity"],
+      "typical_duration": "6-14 weeks",
+      "complexity": "Medium-High"
+    },
+    {
+      "id": "servicenow-strategic-portfolio",
+      "name": "Strategic Portfolio Management",
+      "provider": "ServiceNow",
+      "category": "Enterprise Portfolio",
+      "description": "Implementation of Strategic Portfolio Management for enterprise-wide investment planning, business strategy alignment, and portfolio optimization.",
+      "key_features": ["Investment planning", "Strategy alignment", "Portfolio optimization", "Business outcomes", "ROI tracking"],
+      "use_cases": ["Enterprise planning", "Investment management", "Strategy execution", "Portfolio governance"],
+      "typical_duration": "12-20 weeks",
+      "complexity": "High"
+    },
+    {
+      "id": "servicenow-platform-upgrade",
+      "name": "ServiceNow Platform Upgrade & Optimization",
+      "provider": "ServiceNow",
+      "category": "Platform Services",
+      "description": "ServiceNow platform upgrade services including version migration, instance optimization, performance tuning, and technical debt remediation.",
+      "key_features": ["Version upgrade", "Performance optimization", "Technical debt cleanup", "Best practices", "Testing"],
+      "use_cases": ["Platform modernization", "Performance improvement", "Technical upgrade", "Instance cleanup"],
+      "typical_duration": "6-12 weeks",
+      "complexity": "Medium-High"
+    }
+  ]
+}

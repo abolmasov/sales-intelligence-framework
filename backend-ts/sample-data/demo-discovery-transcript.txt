@@ -1,0 +1,19 @@
+SYNTHETIC DISCOVERY CALL — Meridian Retail Group
+Date: 2026-01-15 | Duration: 45 minutes
+Participants: Casey Morgan (SVP Technology), Riley Chen (IT Service Manager), Demo Seller (Northstar Integrators)
+
+[00:00:12] Casey Morgan: Thanks for making time. We are mid-way through a service desk modernization program and need a practical AI roadmap—not another strategy deck.
+
+[00:01:05] Demo Seller: Understood. Can you share how tickets flow today and where automation stalled?
+
+[00:02:10] Riley Chen: We handle about 12,000 incidents per month across US and EU. Routing is manual for roughly 35% of tickets. Our knowledge base exists but content is stale, so analysts ignore it.
+
+[00:03:40] Casey Morgan: Success for us in twelve months is 25% auto-resolution on tier-one requests, first-assignment accuracy above 80%, and a single queue view for analysts.
+
+[00:05:00] Demo Seller: That aligns with a phased approach: stabilize routing and KB hygiene, then introduce virtual agent flows with human-in-the-loop guardrails.
+
+[00:06:30] Riley Chen: We upgraded our ITSM platform last year; change fatigue is real. Any rollout has to be incremental with measurable weekly wins.
+
+[00:08:00] Casey Morgan: Budget is approved for Q2–Q3 if we can show a pilot ROI in ninety days. Send a workshop outline and a sample ninety-day plan.
+
+[00:09:15] Demo Seller: Will do—we will use this transcript to generate action items, stakeholder questions, and a draft pursuit brief for your review.

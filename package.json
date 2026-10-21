@@ -1,0 +1,23 @@
+{
+  "name": "sales-intelligence-framework",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio demo — AI sales intelligence framework (local-first)",
+  "license": "MIT",
+  "author": "Roman Abolmasov",
+  "scripts": {
+    "setup": "docker compose up -d postgres && npm run setup:backend && npm run setup:frontend",
+    "setup:backend": "cd backend-ts && (test -f .env || cp .env.example .env) && npm ci && npx prisma generate && npx prisma migrate deploy && npm run db:seed",
+    "setup:frontend": "cd frontend && (test -f .env || cp .env.example .env) && npm ci",
+    "dev": "concurrently -n backend,frontend -c blue,green \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend-ts && npm run dev",
+    "dev:frontend": "cd frontend && npm start",
+    "test": "cd backend-ts && npm test",
+    "lint": "cd backend-ts && npm run lint",
+    "typecheck": "cd backend-ts && npm run typecheck",
+    "build": "cd backend-ts && npm run build && cd ../frontend && npm run build"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

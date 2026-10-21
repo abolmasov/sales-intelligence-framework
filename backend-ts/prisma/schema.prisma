@@ -1,0 +1,1151 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("URL")
+}
+
+model Deal {
+  dealId                String                 @id @map("deal_id")
+  opportunityName       String                 @map("opportunity_name")
+  companyName           String                 @map("company_name")
+  accountId             String?                @map("account_id")
+  stage                 String                 @default("prospecting")
+  progressPercentage    Int                    @default(0) @map("progress_percentage")
+  estimatedValue        Float?                 @map("estimated_value")
+  closeDate             DateTime?              @map("close_date")
+  status                String                 @default("active")
+  priority              String?
+  owner                 String?
+  teamMembers           String?                @map("team_members")
+  winThemes             String?                @map("win_themes")
+  story                 String?
+  notes                 String?
+  servicenowId          String?                @map("servicenow_id")
+  jiraKey               String?                @map("jira_key")
+  salesforceId          String?                @unique @map("salesforce_id")
+  createdAt             DateTime               @default(now()) @map("created_at")
+  updatedAt             DateTime               @updatedAt @map("updated_at")
+  amount                Float?
+  campaignId            String?                @map("campaign_id")
+  contactId             String?                @map("contact_id")
+  description           String?
+  fiscalQuarter         Int?                   @map("fiscal_quarter")
+  fiscalYear            Int?                   @map("fiscal_year")
+  forecastCategory      String?                @map("forecast_category")
+  isClosed              Boolean                @default(false) @map("is_closed")
+  isWon                 Boolean                @default(false) @map("is_won")
+  leadSource            String?                @map("lead_source")
+  nextStep              String?                @map("next_step")
+  probability           Float?
+  stageName             String?                @map("stage_name")
+  type                  String?
+  analyses              Analysis[]
+  actionPlans           DealActionPlan[]
+  caseStudies           DealCaseStudy[]
+  questionnaires        DealQuestionnaire[]
+  services              DealService[]
+  account               Account?               @relation(fields: [accountId], references: [accountId])
+  primaryContact        Contact?               @relation(fields: [contactId], references: [contactId])
+  meetings              Meeting[]
+  opportunities         Opportunity[]
+  pptxJobs              PptxJob[]
+  proposalJobs          ProposalJob[]
+  pursuitBriefSnapshots PursuitBriefSnapshot[] @relation("DealPursuitBriefSnapshots")
+  pursuit_briefs        pursuit_briefs[]
+  transcripts           TranscriptAnalysis[]
+  workspaces            Workspace[]
+
+  @@index([opportunityName])
+  @@index([companyName])
+  @@index([accountId])
+  @@index([servicenowId])
+  @@index([jiraKey])
+  @@index([createdAt])
+  @@index([type])
+  @@index([leadSource])
+  @@index([forecastCategory])
+  @@index([isClosed])
+  @@index([contactId])
+  @@index([salesforceId])
+  @@map("deals")
+}
+
+model Account {
+  accountId         String               @id @map("account_id")
+  name              String
+  domain            String?
+  owner             String?
+  industry          String?
+  location          String?
+  summary           String?
+  summaryUpdated    DateTime?            @map("summary_updated")
+  logoUrl           String?              @map("logo_url")
+  createdAt         DateTime             @default(now()) @map("created_at")
+  updatedAt         DateTime             @updatedAt @map("updated_at")
+  annualRevenue     Float?               @map("annual_revenue")
+  billingCity       String?              @map("billing_city")
+  billingCountry    String?              @map("billing_country")
+  billingPostalCode String?              @map("billing_postal_code")
+  billingState      String?              @map("billing_state")
+  billingStreet     String?              @map("billing_street")
+  description       String?
+  numberOfEmployees Int?                 @map("number_of_employees")
+  parentAccountId   String?              @map("parent_account_id")
+  phone             String?
+  type              String?
+  website           String?
+  salesforceId      String?              @unique @map("salesforce_id")
+  parentAccount     Account?             @relation("AccountHierarchy", fields: [parentAccountId], references: [accountId])
+  childAccounts     Account[]            @relation("AccountHierarchy")
+  contacts          Contact[]
+  deals             Deal[]
+  meetings          Meeting[]
+  transcripts       TranscriptAnalysis[]
+  workspaces        Workspace[]
+
+  @@index([name])
+  @@index([owner])
+  @@index([industry])
+  @@index([type])
+  @@index([parentAccountId])
+  @@index([salesforceId])
+  @@map("accounts")
+}
+
+model Meeting {
+  meetingId             String                    @id @map("meeting_id")
+  dealId                String?                   @map("deal_id")
+  accountId             String?                   @map("account_id")
+  onlineMeetingId       String?                   @map("online_meeting_id")
+  icalUid               String?                   @map("ical_uid")
+  title                 String
+  meetingDate           DateTime?                 @map("meeting_date")
+  durationMinutes       Int?                      @map("duration_minutes")
+  internalAttendees     String?                   @map("internal_attendees")
+  externalAttendees     String?                   @map("external_attendees")
+  transcript            String?
+  recordingUrl          String?                   @map("recording_url")
+  notes                 String?
+  analysisId            String?                   @map("analysis_id")
+  keyPoints             String?                   @map("key_points")
+  actionItems           String?                   @map("action_items")
+  calendarEventId       String?                   @map("calendar_event_id")
+  createdAt             DateTime                  @default(now()) @map("created_at")
+  updatedAt             DateTime                  @updatedAt @map("updated_at")
+  isProactiveCall       Boolean                   @default(false) @map("is_proactive_call")
+  outreachEmailDraft    String?                   @map("outreach_email_draft")
+  outreachEmailSentAt   DateTime?                 @map("outreach_email_sent_at")
+  outreachEmailSubject  String?                   @map("outreach_email_subject")
+  proactiveCallType     String?                   @map("proactive_call_type")
+  followupEmailDraft    String?                   @map("followup_email_draft")
+  followupEmailSentAt   DateTime?                 @map("followup_email_sent_at")
+  followupEmailSubject  String?                   @map("followup_email_subject")
+  atlassianAssessments  AtlassianAssessment[]
+  analysisJobs          MeetingAnalysisJob[]
+  attendeeResearch      MeetingAttendeeResearch[]
+  account               Account?                  @relation(fields: [accountId], references: [accountId])
+  deal                  Deal?                     @relation(fields: [dealId], references: [dealId])
+  opportunities         Opportunity[]
+  pptxJobs              PptxJob[]
+  proposalJobs          ProposalJob[]
+  pursuitBriefSnapshots PursuitBriefSnapshot[]    @relation("MeetingPursuitBriefSnapshots")
+  pursuit_briefs        pursuit_briefs[]
+
+  @@index([dealId])
+  @@index([accountId])
+  @@index([analysisId])
+  @@index([calendarEventId])
+  @@index([onlineMeetingId])
+  @@index([icalUid])
+  @@index([meetingDate])
+  @@index([createdAt])
+  @@map("meetings")
+}
+
+model MeetingAttendeeResearch {
+  id               Int       @id @default(autoincrement())
+  meetingId        String    @map("meeting_id")
+  attendeeId       Int?      @map("attendee_id")
+  attendeeType     String    @default("external") @map("attendee_type")
+  key              String    @map("key")
+  name             String
+  email            String?
+  company          String?
+  research         Json?
+  sources          Json?
+  status           String    @default("completed")
+  errorMessage     String?   @map("error_message")
+  lastResearchedAt DateTime  @default(now()) @map("last_researched_at")
+  createdAt        DateTime  @default(now()) @map("created_at")
+  updatedAt        DateTime  @updatedAt @map("updated_at")
+  attendee         Attendee? @relation(fields: [attendeeId], references: [id])
+  meeting          Meeting   @relation(fields: [meetingId], references: [meetingId])
+
+  @@unique([meetingId, key, attendeeType])
+  @@index([meetingId])
+  @@index([attendeeId])
+  @@index([email])
+  @@map("meeting_attendee_research")
+}
+
+model Analysis {
+  sessionId        String                    @id @map("session_id")
+  dealId           String?                   @map("deal_id")
+  meetingId        String?                   @map("meeting_id")
+  companyName      String                    @map("company_name")
+  purposeOfMeeting String?                   @map("purpose_of_meeting")
+  meetingTitle     String?                   @map("meeting_title")
+  meetingDate      String?                   @map("meeting_date")
+  meetingTime      String?                   @map("meeting_time")
+  status           String                    @default("pending")
+  currentStep      String?                   @map("current_step")
+  startedAt        DateTime                  @default(now()) @map("started_at")
+  completedAt      DateTime?                 @map("completed_at")
+  result           String?
+  attendees        String?
+  progress         String?
+  error            String?
+  requestedBy      String?                   @map("requested_by")
+  editedResult     String?                   @map("edited_result")
+  lastEditedAt     DateTime?                 @map("last_edited_at")
+  deal             Deal?                     @relation(fields: [dealId], references: [dealId])
+  integratorMapping IntegratorOpportunityMapping?
+
+  @@index([companyName])
+  @@index([dealId])
+  @@index([meetingId])
+  @@index([requestedBy])
+  @@index([status])
+  @@index([startedAt])
+  @@index([completedAt])
+  @@map("analyses")
+}
+
+model Company {
+  id                   Int      @id @default(autoincrement())
+  companyName          String   @unique @map("company_name")
+  financialData        String?  @map("financial_data")
+  marketPosition       String?  @map("market_position")
+  leadershipInfo       String?  @map("leadership_info")
+  strategicInitiatives String?  @map("strategic_initiatives")
+  lastUpdated          DateTime @default(now()) @map("last_updated")
+  researchCount        Int      @default(0) @map("research_count")
+
+  @@index([companyName])
+  @@index([lastUpdated])
+  @@map("companies")
+}
+
+model Attendee {
+  id              Int                       @id @default(autoincrement())
+  name            String
+  email           String?
+  role            String?
+  company         String?
+  linkedinUrl     String?                   @map("linkedin_url")
+  profileData     String?                   @map("profile_data")
+  lastUpdated     DateTime                  @default(now()) @map("last_updated")
+  meetingResearch MeetingAttendeeResearch[]
+
+  @@index([name])
+  @@index([email])
+  @@index([company])
+  @@map("attendees")
+}
+
+model Document {
+  id           Int      @id @default(autoincrement())
+  sessionId    String   @map("session_id")
+  documentType String   @map("document_type")
+  filename     String
+  filePath     String?  @map("file_path")
+  fileSize     Int?     @map("file_size")
+  mimeType     String?  @map("mime_type")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@index([sessionId])
+  @@index([createdAt])
+  @@map("documents")
+}
+
+model APICache {
+  id           Int       @id @default(autoincrement())
+  cacheKey     String    @unique @map("cache_key")
+  cacheType    String    @map("cache_type")
+  responseData String    @map("response_data")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  expiresAt    DateTime? @map("expires_at")
+  hitCount     Int       @default(0) @map("hit_count")
+
+  @@index([cacheKey])
+  @@index([cacheType])
+  @@index([expiresAt])
+  @@map("api_cache")
+}
+
+model TranscriptAnalysis {
+  analysisId            String                 @id @map("analysis_id")
+  dealId                String?                @map("deal_id")
+  meetingId             String?                @map("meeting_id")
+  accountId             String?                @map("account_id")
+  companyName           String?                @map("company_name")
+  meetingTitle          String?                @map("meeting_title")
+  transcriptText        String                 @map("transcript_text")
+  transcriptExcerpt     String?                @map("transcript_excerpt")
+  analysisResult        String                 @map("analysis_result")
+  opportunityScore      Int?                   @map("opportunity_score")
+  sentimentOverall      String?                @map("sentiment_overall")
+  sentimentShort        String?                @map("sentiment")
+  successProbability    Float?                 @map("success_probability")
+  status                String                 @default("processing") @map("status")
+  errorMessage          String?                @map("error_message")
+  createdAt             DateTime               @default(now()) @map("created_at")
+  analyzedAt            DateTime               @default(now()) @map("analyzed_at")
+  autoProposalRequested Boolean                @default(false) @map("auto_proposal_requested")
+  autoPptRequested      Boolean                @default(false) @map("auto_ppt_requested")
+  proposalJobId         String?                @unique @map("proposal_job_id")
+  pptJobId              String?                @unique @map("ppt_job_id")
+  requestedBy           String?                @map("requested_by")
+  editedAnalysisResult  String?                @map("edited_analysis_result")
+  lastEditedAt          DateTime?              @map("last_edited_at")
+  opportunities         Opportunity[]
+  generatedPptJobs      PptxJob[]              @relation("TranscriptPptJobs")
+  generatedProposalJobs ProposalJob[]          @relation("TranscriptProposalJobs")
+  pursuitBriefSnapshots PursuitBriefSnapshot[] @relation("TranscriptPursuitBriefSnapshots")
+  account               Account?               @relation(fields: [accountId], references: [accountId])
+  deal                  Deal?                  @relation(fields: [dealId], references: [dealId])
+  pptJob                PptxJob?               @relation("TranscriptPrimaryPptJob", fields: [pptJobId], references: [jobId])
+  proposalJob           ProposalJob?           @relation("TranscriptPrimaryProposalJob", fields: [proposalJobId], references: [jobId])
+  isSaved               Boolean                @default(false) @map("is_saved")
+
+  @@index([dealId])
+  @@index([accountId])
+  @@index([meetingId])
+  @@index([companyName])
+  @@index([createdAt])
+  @@index([isSaved, createdAt])
+  @@map("transcript_analyses")
+}
+
+model ProposalJob {
+  jobId                     String              @id @map("job_id")
+  analysisType              String              @default("enhanced") @map("analysis_type")
+  status                    String              @default("processing")
+  currentStep               String?             @map("current_step")
+  requestedBy               String?             @map("requested_by")
+  dealId                    String?             @map("deal_id")
+  meetingId                 String?             @map("meeting_id")
+  transcriptAnalysisId      String?             @map("transcript_analysis_id")
+  fileName                  String?             @map("file_name")
+  fileSize                  Int?                @map("file_size")
+  mimeType                  String?             @map("mime_type")
+  rfpText                   String?             @map("rfp_text")
+  rfpSummary                String?             @map("rfp_summary")
+  metadata                  String?
+  proposalData              String?             @map("proposal_data")
+  errorMessage              String?             @map("error_message")
+  createdAt                 DateTime            @default(now()) @map("created_at")
+  updatedAt                 DateTime            @updatedAt @map("updated_at")
+  completedAt               DateTime?           @map("completed_at")
+  editedProposalData        String?             @map("edited_proposal_data")
+  lastEditedAt              DateTime?           @map("last_edited_at")
+  pptJobs                   PptxJob[]
+  deal                      Deal?               @relation(fields: [dealId], references: [dealId])
+  meeting                   Meeting?            @relation(fields: [meetingId], references: [meetingId])
+  transcriptAnalysis        TranscriptAnalysis? @relation("TranscriptProposalJobs", fields: [transcriptAnalysisId], references: [analysisId])
+  primaryTranscriptAnalysis TranscriptAnalysis? @relation("TranscriptPrimaryProposalJob")
+
+  @@index([status])
+  @@index([analysisType])
+  @@index([meetingId])
+  @@index([dealId])
+  @@index([transcriptAnalysisId])
+  @@index([createdAt])
+  @@map("proposal_jobs")
+}
+
+model MeetingAnalysisJob {
+  jobId                 String    @id @map("job_id")
+  meetingId             String    @map("meeting_id")
+  runTranscript         Boolean   @default(false) @map("run_transcript")
+  runProposal           Boolean   @default(false) @map("run_proposal")
+  runPpt                Boolean   @default(false) @map("run_ppt")
+  status                String    @default("queued")
+  transcriptStatus      String    @default("pending") @map("transcript_status")
+  proposalStatus        String    @default("pending") @map("proposal_status")
+  pptStatus             String    @default("pending") @map("ppt_status")
+  pptJobId              String?   @map("ppt_job_id")
+  transcriptText        String?   @map("transcript_text")
+  transcriptAnalysisId  String?   @map("transcript_analysis_id")
+  proposalJobId         String?   @map("proposal_job_id")
+  errorMessage          String?   @map("error_message")
+  createdAt             DateTime  @default(now()) @map("created_at")
+  updatedAt             DateTime  @updatedAt @map("updated_at")
+  completedAt           DateTime? @map("completed_at")
+  requestedBy           String?   @map("requested_by")
+  requestedByEmail      String?   @map("requested_by_email")
+  sendEmailNotification Boolean   @default(false) @map("send_email_notification")
+  bulkJobId             String?   @map("bulk_job_id")
+  meeting               Meeting   @relation(fields: [meetingId], references: [meetingId])
+  pptJob                PptxJob?  @relation(fields: [pptJobId], references: [jobId])
+
+  @@index([meetingId])
+  @@index([bulkJobId])
+  @@map("meeting_analysis_jobs")
+}
+
+model BulkAnalysisJob {
+  bulkJobId             String    @id @map("bulk_job_id")
+  dealId                String?   @map("deal_id")
+  accountId             String?   @map("account_id")
+  requestedMeetingIds   String?   @map("requested_meeting_ids")
+  resolvedMeetingIds    String?   @map("resolved_meeting_ids")
+  totalMeetings         Int       @default(0) @map("total_meetings")
+  completedMeetings     Int       @default(0) @map("completed_meetings")
+  failedMeetings        Int       @default(0) @map("failed_meetings")
+  skippedMeetings       Int       @default(0) @map("skipped_meetings")
+  runTranscript         Boolean   @default(false) @map("run_transcript")
+  runProposal           Boolean   @default(false) @map("run_proposal")
+  runPpt                Boolean   @default(false) @map("run_ppt")
+  status                String    @default("queued")
+  errorMessage          String?   @map("error_message")
+  requestedBy           String?   @map("requested_by")
+  requestedByEmail      String?   @map("requested_by_email")
+  sendEmailNotification Boolean   @default(false) @map("send_email_notification")
+  createdAt             DateTime  @default(now()) @map("created_at")
+  updatedAt             DateTime  @updatedAt @map("updated_at")
+  completedAt           DateTime? @map("completed_at")
+
+  @@index([dealId])
+  @@index([accountId])
+  @@index([status])
+  @@map("bulk_analysis_jobs")
+}
+
+model PptxJob {
+  jobId                     String               @id @map("job_id")
+  status                    String               @default("processing")
+  requestedBy               String?              @map("requested_by")
+  analysisType              String               @default("rfp") @map("analysis_type")
+  currentStep               String?              @map("current_step")
+  meetingId                 String?              @map("meeting_id")
+  dealId                    String?              @map("deal_id")
+  proposalJobId             String?              @map("proposal_job_id")
+  transcriptAnalysisId      String?              @map("transcript_analysis_id")
+  templateName              String?              @map("template_name")
+  templateVersion           String?              @map("template_version")
+  rfpSummary                String?              @map("rfp_summary")
+  rfpFiles                  String?              @map("rfp_files")
+  solutionFile              String?              @map("solution_file")
+  outputFile                String?              @map("output_file")
+  outputFileSize            Int?                 @map("output_file_size")
+  slideCount                Int?                 @map("slide_count")
+  stats                     String?
+  presentationData          String?              @map("presentation_data")
+  errorMessage              String?              @map("error_message")
+  metadata                  String?
+  createdAt                 DateTime             @default(now()) @map("created_at")
+  updatedAt                 DateTime             @updatedAt @map("updated_at")
+  completedAt               DateTime?            @map("completed_at")
+  editedPresentationData    String?              @map("edited_presentation_data")
+  lastEditedAt              DateTime?            @map("last_edited_at")
+  analysisJobs              MeetingAnalysisJob[]
+  deal                      Deal?                @relation(fields: [dealId], references: [dealId])
+  meeting                   Meeting?             @relation(fields: [meetingId], references: [meetingId])
+  proposalJob               ProposalJob?         @relation(fields: [proposalJobId], references: [jobId])
+  transcriptAnalysis        TranscriptAnalysis?  @relation("TranscriptPptJobs", fields: [transcriptAnalysisId], references: [analysisId])
+  primaryTranscriptAnalysis TranscriptAnalysis?  @relation("TranscriptPrimaryPptJob")
+  workspace                 Workspace?           @relation("WorkspacePptxJob")
+
+  @@index([status])
+  @@index([createdAt])
+  @@index([dealId])
+  @@index([meetingId])
+  @@index([proposalJobId])
+  @@index([transcriptAnalysisId])
+  @@map("pptx_jobs")
+}
+
+model PursuitBriefSnapshot {
+  snapshotId           String              @id @map("snapshot_id")
+  dealId               String              @map("deal_id")
+  meetingId            String?             @map("meeting_id")
+  transcriptAnalysisId String?             @map("transcript_analysis_id")
+  questionAnswers      Json                @default("{}") @map("question_answers")
+  source               String              @default("transcript")
+  createdAt            DateTime            @default(now()) @map("created_at")
+  updatedAt            DateTime            @updatedAt @map("updated_at")
+  deal                 Deal                @relation("DealPursuitBriefSnapshots", fields: [dealId], references: [dealId])
+  meeting              Meeting?            @relation("MeetingPursuitBriefSnapshots", fields: [meetingId], references: [meetingId])
+  transcriptAnalysis   TranscriptAnalysis? @relation("TranscriptPursuitBriefSnapshots", fields: [transcriptAnalysisId], references: [analysisId])
+
+  @@index([dealId])
+  @@index([meetingId])
+  @@index([transcriptAnalysisId])
+  @@map("pursuit_brief_snapshots")
+}
+
+model Opportunity {
+  opportunityId        String              @id @map("opportunity_id")
+  dealId               String?             @map("deal_id")
+  meetingId            String?             @map("meeting_id")
+  transcriptAnalysisId String?             @map("transcript_analysis_id")
+  title                String?
+  description          String?
+  confidenceScore      Float?              @map("confidence_score")
+  status               String              @default("open")
+  source               String?
+  details              Json?
+  createdAt            DateTime            @default(now()) @map("created_at")
+  updatedAt            DateTime            @updatedAt @map("updated_at")
+  deal                 Deal?               @relation(fields: [dealId], references: [dealId])
+  meeting              Meeting?            @relation(fields: [meetingId], references: [meetingId])
+  transcriptAnalysis   TranscriptAnalysis? @relation(fields: [transcriptAnalysisId], references: [analysisId])
+
+  @@index([dealId])
+  @@index([meetingId])
+  @@index([transcriptAnalysisId])
+  @@map("opportunities")
+}
+
+model VectorIndex {
+  id           Int      @id @default(autoincrement())
+  indexName    String   @unique @map("index_name")
+  indexType    String   @map("index_type")
+  dimension    Int
+  totalVectors Int      @default(0) @map("total_vectors")
+  indexPath    String   @map("index_path")
+  createdAt    DateTime @default(now()) @map("created_at")
+  lastUpdated  DateTime @default(now()) @updatedAt @map("last_updated")
+
+  @@index([indexName])
+  @@index([lastUpdated])
+  @@map("vector_indices")
+}
+
+model EmbeddingDocument {
+  id           Int      @id @default(autoincrement())
+  docId        String   @unique @map("doc_id")
+  indexName    String   @map("index_name")
+  content      String
+  contentHash  String   @map("content_hash")
+  documentType String?  @map("document_type")
+  sourceFile   String?  @map("source_file")
+  chunkIndex   Int?     @map("chunk_index")
+  vectorId     Int      @map("vector_id")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@index([docId])
+  @@index([indexName])
+  @@index([contentHash])
+  @@index([vectorId])
+  @@index([createdAt])
+  @@map("embedding_documents")
+}
+
+model DealCaseStudy {
+  id              Int      @id @default(autoincrement())
+  dealId          String   @map("deal_id")
+  caseStudyId     String   @map("case_study_id")
+  caseStudySource String   @map("case_study_source")
+  relevanceScore  Float?   @map("relevance_score")
+  relevanceReason String?  @map("relevance_reason")
+  isActive        Boolean  @default(true) @map("is_active")
+  linkedAt        DateTime @default(now()) @map("linked_at")
+  deal            Deal     @relation(fields: [dealId], references: [dealId])
+
+  @@index([dealId])
+  @@index([caseStudyId])
+  @@index([linkedAt])
+  @@map("deal_case_studies")
+}
+
+model DealService {
+  id                   Int             @id @default(autoincrement())
+  dealId               String          @map("deal_id")
+  serviceId            String          @map("service_id")
+  recommendedBy        String?         @map("recommended_by")
+  recommendationReason String?         @map("recommendation_reason")
+  priority             String?
+  status               String          @default("recommended")
+  linkedAt             DateTime        @default(now()) @map("linked_at")
+  deal                 Deal            @relation(fields: [dealId], references: [dealId])
+  service              ServiceOffering @relation(fields: [serviceId], references: [serviceId])
+
+  @@index([dealId])
+  @@index([serviceId])
+  @@index([linkedAt])
+  @@map("deal_services")
+}
+
+model DealActionPlan {
+  id                Int      @id @default(autoincrement())
+  dealId            String   @map("deal_id")
+  analysisSessionId String?  @map("analysis_session_id")
+  title             String
+  actionPlanText    String   @map("action_plan_text")
+  actionItems       String?  @map("action_items")
+  createdBy         String?  @map("created_by")
+  version           Int      @default(1)
+  isActive          Boolean  @default(true) @map("is_active")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+  deal              Deal     @relation(fields: [dealId], references: [dealId])
+
+  @@index([dealId])
+  @@index([analysisSessionId])
+  @@index([createdAt])
+  @@map("deal_action_plans")
+}
+
+model DealQuestionnaire {
+  id                Int      @id @default(autoincrement())
+  dealId            String   @map("deal_id")
+  analysisSessionId String?  @map("analysis_session_id")
+  title             String
+  questions         String
+  questionnaireType String?  @map("questionnaire_type")
+  createdBy         String?  @map("created_by")
+  completionStatus  String   @default("draft") @map("completion_status")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+  deal              Deal     @relation(fields: [dealId], references: [dealId])
+
+  @@index([dealId])
+  @@index([analysisSessionId])
+  @@index([createdAt])
+  @@map("deal_questionnaires")
+}
+
+model SalesTeamMember {
+  memberId        String   @id @map("member_id")
+  name            String
+  email           String?
+  role            String?
+  title           String?
+  department      String?
+  expertiseAreas  String?  @map("expertise_areas")
+  phone           String?
+  location        String?
+  status          String   @default("active")
+  availability    String?
+  bio             String?
+  profileImageUrl String?  @map("profile_image_url")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@index([name])
+  @@index([email])
+  @@map("sales_team_members")
+}
+
+model ServiceOffering {
+  serviceId          String        @id @map("service_id")
+  serviceName        String        @map("service_name")
+  category           String?
+  description        String?
+  shortDescription   String?       @map("short_description")
+  pricingModel       String?       @map("pricing_model")
+  estimatedDuration  String?       @map("estimated_duration")
+  typicalTeamSize    String?       @map("typical_team_size")
+  tags               String?
+  relatedCaseStudies String?       @map("related_case_studies")
+  deliverables       String?
+  status             String        @default("active")
+  featured           Boolean       @default(false)
+  createdAt          DateTime      @default(now()) @map("created_at")
+  updatedAt          DateTime      @updatedAt @map("updated_at")
+  deals              DealService[]
+
+  @@index([serviceName])
+  @@map("service_offerings")
+}
+
+model User {
+  userId           String                @id @map("user_id")
+  username         String                @unique
+  email            String?               @unique
+  fullName         String?               @map("full_name")
+  isActive         Boolean               @default(true) @map("is_active")
+  createdAt        DateTime              @default(now()) @map("created_at")
+  lastLogin        DateTime?             @map("last_login")
+  apiKeys          UserAPIKeys?
+  calendarMeetings UserCalendarMeeting[]
+
+  @@index([username])
+  @@index([email])
+  @@index([createdAt])
+  @@map("users")
+}
+
+model UserCalendarMeeting {
+  id                  Int       @id @default(autoincrement())
+  userId              String    @map("user_id")
+  eventId             String    @map("event_id")
+  onlineMeetingId     String?   @map("online_meeting_id")
+  icalUid             String?   @map("ical_uid")
+  subject             String
+  bodyPreview         String?   @map("body_preview")
+  startUtc            DateTime  @map("start_utc")
+  endUtc              DateTime? @map("end_utc")
+  originalTimeZone    String?   @map("original_time_zone")
+  location            String?
+  joinUrl             String?   @map("join_url")
+  isCancelled         Boolean   @default(false) @map("is_cancelled")
+  transcriptAvailable Boolean   @default(false) @map("transcript_available")
+  internalAttendees   Json?     @map("internal_attendees")
+  externalAttendees   Json?     @map("external_attendees")
+  rawEvent            Json?     @map("raw_event")
+  lastSyncedAt        DateTime  @default(now()) @map("last_synced_at")
+  createdAt           DateTime  @default(now()) @map("created_at")
+  updatedAt           DateTime  @updatedAt @map("updated_at")
+  user                User      @relation(fields: [userId], references: [userId])
+
+  @@unique([userId, eventId])
+  @@index([userId, startUtc])
+  @@index([onlineMeetingId])
+  @@index([icalUid])
+  @@map("user_calendar_meetings")
+}
+
+model UserAPIKeys {
+  id                         Int      @id @default(autoincrement())
+  userId                     String   @unique @map("user_id")
+  openaiApiKeyEncrypted      Bytes?   @map("openai_api_key_encrypted")
+  azureClientIdEncrypted     Bytes?   @map("azure_client_id_encrypted")
+  azureClientSecretEncrypted Bytes?   @map("azure_client_secret_encrypted")
+  azureTenantIdEncrypted     Bytes?   @map("azure_tenant_id_encrypted")
+  hasOpenaiKey               Boolean  @default(false) @map("has_openai_key")
+  hasAzureCredentials        Boolean  @default(false) @map("has_azure_credentials")
+  sfAccessTokenEncrypted     Bytes?   @map("sf_access_token_encrypted")
+  sfRefreshTokenEncrypted    Bytes?   @map("sf_refresh_token_encrypted")
+  sfInstanceUrlEncrypted     Bytes?   @map("sf_instance_url_encrypted")
+  hasSalesforceCredentials   Boolean  @default(false) @map("has_salesforce_credentials")
+  sfTokenExpiresAt           DateTime? @map("sf_token_expires_at")
+  createdAt                  DateTime @default(now()) @map("created_at")
+  updatedAt                  DateTime @updatedAt @map("updated_at")
+  user                       User     @relation(fields: [userId], references: [userId])
+
+  @@index([userId])
+  @@index([createdAt])
+  @@map("user_api_keys")
+}
+
+model KnowledgeGraph {
+  id          Int      @id @default(autoincrement())
+  graphId     String   @unique @map("graph_id")
+  graphType   String   @map("graph_type")
+  name        String
+  description String?
+  nodesData   String   @map("nodes_data")
+  linksData   String   @map("links_data")
+  version     Int      @default(1)
+  isActive    Boolean  @default(true) @map("is_active")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@index([graphType])
+  @@index([createdAt])
+  @@index([updatedAt])
+  @@map("knowledge_graphs")
+}
+
+model Notification {
+  id             Int      @id @default(autoincrement())
+  notificationId String   @unique @map("notification_id")
+  userId         String   @map("user_id")
+  type           String
+  title          String
+  message        String
+  dealId         String?  @map("deal_id")
+  meetingId      String?  @map("meeting_id")
+  metadata       String?
+  read           Boolean  @default(false)
+  emailSent      Boolean  @default(false) @map("email_sent")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  @@index([userId])
+  @@index([userId, read])
+  @@index([type])
+  @@index([createdAt])
+  @@map("notifications")
+}
+
+model OpportunityStage {
+  stageId          String   @id @map("stage_id")
+  stageName        String   @unique @map("stage_name")
+  sortOrder        Int      @default(0) @map("sort_order")
+  probability      Float    @default(0)
+  forecastCategory String?  @map("forecast_category")
+  isActive         Boolean  @default(true) @map("is_active")
+  isClosed         Boolean  @default(false) @map("is_closed")
+  isWon            Boolean  @default(false) @map("is_won")
+  description      String?
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  @@index([stageName])
+  @@index([sortOrder])
+  @@index([isActive])
+  @@map("opportunity_stages")
+}
+
+model Contact {
+  contactId          String    @id @map("contact_id")
+  accountId          String?   @map("account_id")
+  firstName          String?   @map("first_name")
+  lastName           String    @map("last_name")
+  email              String?
+  phone              String?
+  mobilePhone        String?   @map("mobile_phone")
+  title              String?
+  department         String?
+  mailingStreet      String?   @map("mailing_street")
+  mailingCity        String?   @map("mailing_city")
+  mailingState       String?   @map("mailing_state")
+  mailingPostalCode  String?   @map("mailing_postal_code")
+  mailingCountry     String?   @map("mailing_country")
+  leadSource         String?   @map("lead_source")
+  description        String?
+  ownerId            String?   @map("owner_id")
+  reportsToId        String?   @map("reports_to_id")
+  linkedinUrl        String?   @map("linkedin_url")
+  salesforceId       String?   @unique @map("salesforce_id")
+  isActive           Boolean   @default(true) @map("is_active")
+  doNotCall          Boolean   @default(false) @map("do_not_call")
+  hasOptedOutOfEmail Boolean   @default(false) @map("has_opted_out_of_email")
+  createdAt          DateTime  @default(now()) @map("created_at")
+  updatedAt          DateTime  @updatedAt @map("updated_at")
+  account            Account?  @relation(fields: [accountId], references: [accountId])
+  reportsTo          Contact?  @relation("ContactHierarchy", fields: [reportsToId], references: [contactId])
+  directReports      Contact[] @relation("ContactHierarchy")
+  deals              Deal[]
+
+  @@index([accountId])
+  @@index([email])
+  @@index([lastName])
+  @@index([ownerId])
+  @@index([reportsToId])
+  @@index([salesforceId])
+  @@map("contacts")
+}
+
+model IntegratorOpportunityMapping {
+  id                   Int       @id @default(autoincrement())
+  analysisSessionId    String?   @unique @map("analysis_session_id")
+  transcriptAnalysisId String?   @map("transcript_analysis_id")
+  dealId               String?   @map("deal_id")
+  serviceLines         Json      @map("service_lines")
+  opportunityCategory  String    @map("opportunity_category")
+  strategicFitScore    Float?    @map("strategic_fit_score")
+  strategicFitAnalysis String?   @map("strategic_fit_analysis")
+  createdAt            DateTime  @default(now()) @map("created_at")
+  updatedAt            DateTime  @updatedAt @map("updated_at")
+  analysis             Analysis? @relation(fields: [analysisSessionId], references: [sessionId])
+
+  @@index([analysisSessionId])
+  @@index([transcriptAnalysisId])
+  @@index([dealId])
+  @@index([opportunityCategory])
+  @@map("integrator_opportunity_mappings")
+}
+
+model AtlassianAssessment {
+  id                     String                @id @default(uuid())
+  companyName            String                @map("company_name")
+  meetingId              String?               @map("meeting_id")
+  questionnaireResponses Json?                 @map("questionnaire_responses")
+  environmentData        Json?                 @map("environment_data")
+  analysisResult         Json?                 @map("analysis_result")
+  migrationScore         Int?                  @map("migration_score")
+  urgencyLevel           String?               @map("urgency_level")
+  gaps                   Json?
+  recommendations        Json?
+  cloudCapabilities      Json?                 @map("cloud_capabilities")
+  status                 String                @default("pending")
+  errorMessage           String?               @map("error_message")
+  createdAt              DateTime              @default(now()) @map("created_at")
+  updatedAt              DateTime              @updatedAt @map("updated_at")
+  createdBy              String?               @map("created_by")
+  meeting                Meeting?              @relation(fields: [meetingId], references: [meetingId])
+  credentials            AtlassianCredential[]
+  isSaved                Boolean               @default(false) @map("is_saved")
+
+  @@index([companyName])
+  @@index([meetingId])
+  @@index([status])
+  @@index([createdAt])
+  @@index([isSaved, createdAt])
+  @@map("atlassian_assessments")
+}
+
+model AtlassianCredential {
+  id           String              @id @default(uuid())
+  assessmentId String              @map("assessment_id")
+  companyName  String              @map("company_name")
+  instanceUrl  String              @map("instance_url")
+  username     String?
+  apiTokenEnc  Bytes               @map("api_token_enc")
+  productType  String              @map("product_type")
+  isValid      Boolean             @default(true) @map("is_valid")
+  lastTestedAt DateTime?           @map("last_tested_at")
+  createdAt    DateTime            @default(now()) @map("created_at")
+  updatedAt    DateTime            @updatedAt @map("updated_at")
+  assessment   AtlassianAssessment @relation(fields: [assessmentId], references: [id])
+
+  @@index([assessmentId])
+  @@index([companyName])
+  @@map("atlassian_credentials")
+}
+
+model pursuit_briefs {
+  id                       String   @id
+  deal_id                  String
+  meeting_id               String?
+  created_at               String
+  updated_at               String
+  status                   String
+  completeness             Int      @default(0)
+  linked_research_sessions String?
+  linked_transcripts       String?
+  linked_case_studies      String?
+  content                  String   @default("")
+  question_answers         String   @default("{}")
+  transcript_answers       String   @default("{}")
+  deals                    Deal     @relation(fields: [deal_id], references: [dealId], onDelete: NoAction, onUpdate: NoAction)
+  meetings                 Meeting? @relation(fields: [meeting_id], references: [meetingId], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model ProposalEvaluation {
+  id                    String   @id @default(uuid())
+  dealId                String?  @map("deal_id")
+  rfpFileName           String   @map("rfp_file_name")
+  proposalFileName      String   @map("proposal_file_name")
+  pursuitBriefFileName  String?  @map("pursuit_brief_file_name")
+  status                String   @default("completed")
+  complianceScore       Int      @map("compliance_score")
+  totalRequirements     Int      @map("total_requirements")
+  addressedCount        Int      @map("addressed_count")
+  partialCount          Int      @map("partial_count")
+  notAddressedCount     Int      @map("not_addressed_count")
+  mandatoryTotal        Int      @map("mandatory_total")
+  mandatoryMet          Int      @map("mandatory_met")
+  // Full analysis data stored as JSON
+  analysisData          String   @map("analysis_data")
+  executiveSummary      String   @map("executive_summary")
+  winLossInsights       String   @map("win_loss_insights")
+  criticalGaps          String   @map("critical_gaps")
+  bySection             String   @map("by_section")
+  // Pursuit brief question analysis
+  pursuitBriefAnalysis  String?  @map("pursuit_brief_analysis")
+  createdAt             DateTime @default(now()) @map("created_at")
+  updatedAt             DateTime @updatedAt @map("updated_at")
+  createdBy             String?  @map("created_by")
+  isSaved               Boolean  @default(false) @map("is_saved")
+
+  @@index([dealId])
+  @@index([createdAt])
+  @@index([status])
+  @@index([isSaved, createdAt])
+  @@map("proposal_evaluations")
+}
+
+model UsageEvent {
+  id           String   @id @map("event_id")
+  eventType    String   @map("event_type")
+  category     String
+  action       String
+  label        String?
+  value        Float?
+  duration     Float?
+  userId       String?  @map("user_id")
+  sessionId    String?  @map("session_id")
+  success      Boolean  @default(true)
+  metadata     String?
+  context      String?
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@index([eventType])
+  @@index([category])
+  @@index([userId])
+  @@index([sessionId])
+  @@index([createdAt])
+  @@map("usage_events")
+}
+
+model RfpResearch {
+  researchId        String   @id @map("research_id")
+  fileName          String?  @map("file_name")
+  fileType          String?  @map("file_type")
+  companyName       String?  @map("company_name")
+  rfpSummary        String?  @map("rfp_summary")
+  totalQuestions    Int      @default(0) @map("total_questions")
+  answeredQuestions Int      @default(0) @map("answered_questions")
+  averageConfidence Float    @default(0) @map("average_confidence")
+  processingTimeMs  Int      @default(0) @map("processing_time_ms")
+  // Full results stored as JSON (questions and answers)
+  questionsData     String?  @map("questions_data")
+  answersData       String?  @map("answers_data")
+  customPrompt      String?  @map("custom_prompt")
+  status            String   @default("completed")
+  errorMessage      String?  @map("error_message")
+  requestedBy       String?  @map("requested_by")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+  isSaved           Boolean  @default(false) @map("is_saved")
+
+  @@index([requestedBy])
+  @@index([companyName])
+  @@index([createdAt])
+  @@index([status])
+  @@index([isSaved, createdAt])
+  @@map("rfp_research")
+}
+
+model SalesforceSync {
+  id            String   @id @default(uuid())
+  userId        String   @map("user_id")
+  objectType    String   @map("object_type")
+  sfObjectId    String   @map("sf_object_id")
+  localObjectId String?  @map("local_object_id")
+  lastSyncedAt  DateTime @map("last_synced_at")
+  syncStatus    String   @map("sync_status")
+  syncDirection String   @default("inbound") @map("sync_direction")
+  errorMessage  String?  @map("error_message")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  @@unique([userId, objectType, sfObjectId])
+  @@index([userId])
+  @@index([objectType])
+  @@index([syncStatus])
+  @@index([lastSyncedAt])
+  @@map("salesforce_syncs")
+}
+
+model Workspace {
+  workspaceId       String    @id @map("workspace_id")
+  name              String
+  description       String?
+  status            String    @default("draft")
+
+  // Workspace type
+  workspaceType     String    @default("workshop_analysis") @map("workspace_type")
+  sourceDocuments   String?   @map("source_documents")
+
+  // Transcript data
+  transcriptText    String?   @map("transcript_text")
+  transcriptExcerpt String?   @map("transcript_excerpt")
+  workshopDate      DateTime? @map("workshop_date")
+  workshopDuration  Int?      @map("workshop_duration")
+  clientName        String?   @map("client_name")
+
+  // Analysis stage
+  analysisStatus    String    @default("pending") @map("analysis_status")
+  analysisResult    String?   @map("analysis_result")
+
+  // Miro board stage
+  miroStatus        String    @default("pending") @map("miro_status")
+  miroBoardId       String?   @map("miro_board_id")
+  miroBoardUrl      String?   @map("miro_board_url")
+  miroSnapshot      String?   @map("miro_snapshot")
+
+  // PPTX stage
+  pptxStatus        String    @default("pending") @map("pptx_status")
+  pptxJobId         String?   @unique @map("pptx_job_id")
+
+  // ── Engagement lifecycle (4-stage) ──────────────────────────────────────
+  // Stage tracking
+  engagementStage   String?   @map("engagement_stage")  // pre_workshop | workshop_prep | workshop | post_workshop
+
+  // Stage 1 – Client Intelligence & Survey
+  workshopFocus        String    @default("ITSM") @map("workshop_focus")  // ITSM | HRSD | HRSD_ITSM
+  clientIntelligence   String?   @map("client_intelligence")    // JSON: ClientIntelligenceResult
+  preworkshopSurvey    String?   @map("preworkshop_survey")     // JSON: PreWorkshopSurvey (generated questions)
+  surveyDocUrl         String?   @map("survey_doc_url")
+
+  // Stage 2 – Workshop Preparation (re-runnable)
+  surveyResponses          String?   @map("survey_responses")           // JSON: ingested client answers
+  workshopPrepMiroId       String?   @map("workshop_prep_miro_id")
+  workshopPrepMiroUrl      String?   @map("workshop_prep_miro_url")
+  workshopPrepMiroSnapshot String?   @map("workshop_prep_miro_snapshot") // JSON
+  workshopPrepMiroStatus   String?   @default("pending") @map("workshop_prep_miro_status")
+  workshopPrepDeckUrl      String?   @map("workshop_prep_deck_url")
+  workshopPrepPptxStatus   String?   @default("pending") @map("workshop_prep_pptx_status")
+  workshopPrepPptxJobId    String?   @map("workshop_prep_pptx_job_id")
+  workshopPrepPptxStep     String?   @map("workshop_prep_pptx_step")  // current generation step key
+
+  // Stage 3 – Live Workshop (agent mapping)
+  workshopNotes       String?   @map("workshop_notes")         // freetext from meeting
+  miroContextItems    String?   @map("miro_context_items")     // JSON: synced cards from Miro
+  agentMappings       String?   @map("agent_mappings")         // JSON: AgentMapping[]
+  agentMappingStatus  String?   @default("pending") @map("agent_mapping_status")
+  workshopPersonas    String?   @map("workshop_personas")      // JSON: WorkshopPersona[]
+  workshopPainPoints  String?   @map("workshop_pain_points")   // JSON: WorkshopPainPoint[]
+  personaMappings     String?   @map("persona_mappings")       // JSON: PersonaMapping[]
+  personaMappingStatus String?  @default("pending") @map("persona_mapping_status")
+
+  // ── Metadata ─────────────────────────────────────────────────────────────
+  errorMessage      String?   @map("error_message")
+  pipelineLog       String?   @map("pipeline_log")
+  requestedBy       String?   @map("requested_by")
+  requestedByEmail  String?   @map("requested_by_email")
+  accountId         String?   @map("account_id")
+  dealId            String?   @map("deal_id")
+
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+  completedAt       DateTime? @map("completed_at")
+
+  // Relations
+  pptxJob           PptxJob?  @relation("WorkspacePptxJob", fields: [pptxJobId], references: [jobId])
+  account           Account?  @relation(fields: [accountId], references: [accountId])
+  deal              Deal?     @relation(fields: [dealId], references: [dealId])
+  isSaved           Boolean   @default(false) @map("is_saved")
+
+  @@index([status])
+  @@index([requestedBy])
+  @@index([clientName])
+  @@index([accountId])
+  @@index([dealId])
+  @@index([createdAt])
+  @@index([isSaved, createdAt])
+  @@index([workspaceType])
+  @@map("workspaces")
+}
+
+model DiscoverySession {
+  sessionId    String   @id @default(uuid()) @map("session_id")
+  title        String?  @map("title")
+  messages     Json     @default("[]") @map("messages")
+  requestedBy  String?  @map("requested_by")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+  isSaved      Boolean  @default(false) @map("is_saved")
+
+  @@index([requestedBy, createdAt])
+  @@index([isSaved, createdAt])
+  @@map("discovery_sessions")
+}
+
+model OutputFeedback {
+  id          String   @id @default(uuid()) @map("feedback_id")
+  eventId     String?  @map("event_id")
+  rating      String                         // "like" or "dislike"
+  comment     String?
+  userId      String?  @map("user_id")
+  category    String?                        // e.g. "rfp_research", "transcript_analysis"
+  referenceId String?  @map("reference_id")  // ID of the output being rated
+  metadata    String?                        // optional JSON metadata
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@index([userId])
+  @@index([rating])
+  @@index([category])
+  @@index([createdAt])
+  @@map("output_feedback")
+}

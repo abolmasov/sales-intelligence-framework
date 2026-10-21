@@ -1,0 +1,222 @@
+[
+  {
+    "id": "fictional_discovery_workshop",
+    "phase": "Phase 0 – Frame",
+    "name": "Northstar Discovery Workshop (Demo SKU)",
+    "description": "A fictional half-day workshop for the portfolio demo: align stakeholders on goals, constraints, and success metrics for a sample CRM modernization program at made-up client 'Lumen Retail Group'.",
+    "outcome": "Shared demo narrative; prioritized list of 3 fictional workflow targets; agreement on how AI-assisted sales prep fits the story.",
+    "complexity": "S",
+    "problem_statements": [
+      "Demo accounts lack a crisp, repeatable discovery storyline",
+      "Stakeholders in the sample deal have misaligned priorities",
+      "No shared vocabulary for value hypotheses in the sandbox"
+    ],
+    "primary_kpis": ["Cycle time", "Win rate (demo)", "Prep hours saved"],
+    "client_need_signals": [
+      "We need a credible discovery arc for interviews",
+      "Our demo deal feels generic without structured workshops",
+      "Leadership wants a simple before/after narrative"
+    ],
+    "primary_sku": "NS-DISC-001",
+    "also_bundles_with": ["Northstar Integrator Readiness Scan (Demo SKU)"],
+    "standalone_micro_bundle_potential": "Sold alone as a 90-minute portfolio walkthrough; pairs with seeded meeting data."
+  },
+  {
+    "id": "fictional_readiness_scan",
+    "phase": "Phase 1 – Diagnose",
+    "name": "Northstar Integrator Readiness Scan (Demo SKU)",
+    "description": "Lightweight fictional assessment of people, process, and tooling readiness for AI-assisted selling—applied to sample company 'Harbor Mutual Insurance' in the demo database.",
+    "outcome": "Heatmap of demo gaps; recommended next steps mapped to catalog SKUs; no real client data required.",
+    "complexity": "S–M",
+    "problem_statements": [
+      "Unclear which demo modules to show first",
+      "Integrator maturity story is hard to tell without a scan artifact",
+      "Sandbox tenants need consistent readiness scores"
+    ],
+    "primary_kpis": ["Risk (demo)", "Time-to-first-value", "Adoption (sandbox)"],
+    "client_need_signals": [
+      "We want a one-page readiness summary for the demo",
+      "Interviewers ask how we'd assess a real client—we need a parallel fictional example",
+      "Multiple demo paths need a common scoring model"
+    ],
+    "primary_sku": "NS-READY-010",
+    "also_bundles_with": ["Northstar Discovery Workshop (Demo SKU)"],
+    "standalone_micro_bundle_potential": "Standalone PDF-style output in the app; good opener before deep-dive modules."
+  },
+  {
+    "id": "fictional_crm_health_check",
+    "phase": "Phase 1 – Diagnose",
+    "name": "CRM Pipeline Health Check (Fictional)",
+    "description": "Sample service line describing how Northstar Integrators would review pipeline hygiene, stage definitions, and forecast discipline for fictional manufacturer 'Orion Components Ltd.'",
+    "outcome": "Demo recommendations for stage gates, fields, and coaching triggers—all synthetic.",
+    "complexity": "M",
+    "problem_statements": [
+      "Forecast categories in the demo don't match stage reality",
+      "Reps skip qualification steps in sample opportunities",
+      "Leadership lacks visibility in the fictional account"
+    ],
+    "primary_kpis": ["Forecast accuracy (demo)", "Stage conversion", "Data quality score"],
+    "client_need_signals": [
+      "Our demo pipeline looks messy in screenshots",
+      "We need believable CRM improvement talking points",
+      "SE interviews want a CRM + AI story"
+    ],
+    "primary_sku": "NS-CRM-020",
+    "also_bundles_with": ["Revenue Operations Playbook Lite (Fictional)"],
+    "standalone_micro_bundle_potential": "Can be referenced in opportunity-mapping graphs without running a full engagement."
+  },
+  {
+    "id": "fictional_ai_copilot_rollout",
+    "phase": "Phase 2 – Design",
+    "name": "AI Sales Copilot Rollout (Fictional)",
+    "description": "Design engagement for rolling out research, briefing, and follow-up assistants to a fictional 200-rep division at 'Summit Healthcare Cooperative'.",
+    "outcome": "Phased enablement plan, guardrails, and KPI tree—portfolio illustration only.",
+    "complexity": "M",
+    "problem_statements": [
+      "Unclear how AI tools sit in the daily rep workflow in demos",
+      "Compliance concerns need a fictional governance appendix",
+      "Enablement assets are missing from the sample catalog"
+    ],
+    "primary_kpis": ["Prep time", "Meeting quality score", "Compliance incidents (demo)"],
+    "client_need_signals": [
+      "We need a rollout story that isn't tied to a real employer",
+      "Buyers ask about change management—catalog should answer",
+      "Demo UI maps services to opportunities; this SKU fills that slot"
+    ],
+    "primary_sku": "NS-AI-030",
+    "also_bundles_with": ["Northstar Integrator Readiness Scan (Demo SKU)"],
+    "standalone_micro_bundle_potential": "Often bundled with copilot-related UI screens in the seeded workspace."
+  },
+  {
+    "id": "fictional_revops_playbook",
+    "phase": "Phase 2 – Design",
+    "name": "Revenue Operations Playbook Lite (Fictional)",
+    "description": "Document standard operating procedures for handoffs, SLAs, and tooling for a made-up B2B SaaS vendor 'Nimbus Analytics Inc.'",
+    "outcome": "Playbook outline suitable for proposal generation prompts in the demo.",
+    "complexity": "S",
+    "problem_statements": [
+      "Handoffs between SDR, AE, and SE are undefined in sample data",
+      "Demo proposals lack operational detail",
+      "Service mapping needs a revops anchor SKU"
+    ],
+    "primary_kpis": ["Handoff SLA", "Quote cycle time", "Win rate"],
+    "client_need_signals": [
+      "Prospects ask how we'd operationalize recommendations",
+      "We need generic revops language for generated decks",
+      "Catalog must stay clearly fictional for public release"
+    ],
+    "primary_sku": "NS-REV-040",
+    "also_bundles_with": ["CRM Pipeline Health Check (Fictional)"],
+    "standalone_micro_bundle_potential": "Small scope; good for bundle suggestions in engagement.service tests."
+  },
+  {
+    "id": "fictional_security_review",
+    "phase": "Phase 1 – Diagnose",
+    "name": "Security & Data Handling Review (Fictional)",
+    "description": "Sample review of identity, logging, and data residency patterns for AI sales tools—applied to fictional financial services client 'Redwood Credit Union'.",
+    "outcome": "Demo security checklist and risk register entries; no production audit.",
+    "complexity": "M",
+    "problem_statements": [
+      "Interviewers ask about enterprise security without exposing real designs",
+      "Demo needs plausible control language",
+      "Service catalog lacked a security-oriented line item"
+    ],
+    "primary_kpis": ["Risk reduction (demo)", "Audit readiness score", "Incident count"],
+    "client_need_signals": [
+      "Security questionnaire prompts in the app need matching services",
+      "We must avoid implying work for real regulated entities",
+      "Buyers in fintech verticals expect this SKU in mapping output"
+    ],
+    "primary_sku": "NS-SEC-050",
+    "also_bundles_with": ["AI Sales Copilot Rollout (Fictional)"],
+    "standalone_micro_bundle_potential": "Pairs with compliance-themed discovery questions in seed scripts."
+  },
+  {
+    "id": "fictional_enablement_pack",
+    "phase": "Phase 3 – Deliver",
+    "name": "Field Enablement Pack (Fictional)",
+    "description": "Training assets, office hours, and certification path for fictional rollout at 'Pioneer Logistics Partners'.",
+    "outcome": "Enablement calendar and competency rubric used only in generated workshop materials.",
+    "complexity": "S–M",
+    "problem_statements": [
+      "Demo workshops reference enablement but catalog had no match",
+      "Generated readouts need a delivery-phase SKU",
+      "Sample agents map to services with uneven phase coverage"
+    ],
+    "primary_kpis": ["Certification rate (demo)", "Time-to-productivity", "NPS (sandbox)"],
+    "client_need_signals": [
+      "Customer success story templates mention training",
+      "We need a delivery-phase entry for graph visualization",
+      "Public repo must read as integrator fiction, not client work"
+    ],
+    "primary_sku": "NS-ENBL-060",
+    "also_bundles_with": ["AI Sales Copilot Rollout (Fictional)"],
+    "standalone_micro_bundle_potential": "Optional add-on in proposal builder demo flow."
+  },
+  {
+    "id": "fictional_integration_sprint",
+    "phase": "Phase 3 – Deliver",
+    "name": "Systems Integration Sprint (Fictional)",
+    "description": "Two-week fictional sprint connecting CRM, calendar, and knowledge bases for demo tenant 'Atlas Education Services'.",
+    "outcome": "Integration backlog and test scenarios; aligns with MS Graph / Salesforce mock routes in the repo.",
+    "complexity": "M",
+    "problem_statements": [
+      "Demo integrations need a services counterpart in mapping",
+      "Prospects ask about calendar + CRM wiring",
+      "Catalog entries were overly enterprise-specific"
+    ],
+    "primary_kpis": ["Integration defects (demo)", "Go-live date", "User adoption"],
+    "client_need_signals": [
+      "Technical buyers want an integration SKU in the graph",
+      "Seed data references calendar sync",
+      "Portfolio should show full lifecycle, not only AI prompts"
+    ],
+    "primary_sku": "NS-INT-070",
+    "also_bundles_with": ["CRM Pipeline Health Check (Fictional)"],
+    "standalone_micro_bundle_potential": "Demonstrates delivery capability without implying past client projects."
+  },
+  {
+    "id": "fictional_value_realization",
+    "phase": "Phase 4 – Sustain",
+    "name": "Value Realization Office (Fictional)",
+    "description": "Ongoing fictional practice for tracking benefits realization and executive reporting at 'Meridian Public Sector Demo Agency'.",
+    "outcome": "Benefits tree and executive dashboard mockups for post-sale storylines.",
+    "complexity": "M",
+    "problem_statements": [
+      "Demo lacks a sustain-phase service for long-cycle deals",
+      "Executive buyers ask how value is tracked after go-live",
+      "Opportunity mapper needs late-stage SKU nodes"
+    ],
+    "primary_kpis": ["Realized value (demo)", "ROI narrative strength", "Renewal likelihood"],
+    "client_need_signals": [
+      "We need a sustain phase entry for completeness",
+      "Generated QBR slides reference value tracking",
+      "Fictional public-sector name avoids real agency ties"
+    ],
+    "primary_sku": "NS-VRO-080",
+    "also_bundles_with": ["Revenue Operations Playbook Lite (Fictional)"],
+    "standalone_micro_bundle_potential": "Executive briefing add-on; small JSON footprint for public repo."
+  },
+  {
+    "id": "fictional_agent_ops",
+    "phase": "Phase 4 – Sustain",
+    "name": "Agent Operations & Monitoring (Fictional)",
+    "description": "Runbook for monitoring prompt quality, cost, and safety of AI agents in sales workflows—illustrated with synthetic metrics for 'Cedar Biotech Demo Co.'",
+    "outcome": "Monitoring dashboard spec and escalation paths; supports agent-mapping workshop demo.",
+    "complexity": "M",
+    "problem_statements": [
+      "Agent workshop output needs matching sustain services",
+      "Public viewers ask how agents are governed post-deploy",
+      "Prior catalog was too long and client-specific"
+    ],
+    "primary_kpis": ["Agent uptime (demo)", "Cost per assisted deal", "Human override rate"],
+    "client_need_signals": [
+      "Workshop stage maps pain points to agent + service pairs",
+      "We must show MLOps-lite without real telemetry",
+      "Compact catalog keeps seeds and tests fast"
+    ],
+    "primary_sku": "NS-AGOP-090",
+    "also_bundles_with": ["AI Sales Copilot Rollout (Fictional)", "Security & Data Handling Review (Fictional)"],
+    "standalone_micro_bundle_potential": "Closes the loop on agent-mapping demos; clearly labeled fictional."
+  }
+]

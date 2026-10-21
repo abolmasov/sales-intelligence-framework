@@ -1,0 +1,7 @@
+PRE-WORKSHOP SURVEY (SYNTHETIC)
+Client: Meridian Retail Group (fictional) | Focus: ITSM + AI enablement
+Respondent: Alex Rivera, VP IT Operations
+
+Top outcomes: align leadership on a 90-day pilot, validate virtual agent ROI assumptions, leave with an owned backlog.
+Biggest pain: ticket reroutes and stale knowledge articles slowing tier-one resolution.
+Current state: ITSM platform upgraded recently; change fatigue is high; automation rules exist but are brittle.

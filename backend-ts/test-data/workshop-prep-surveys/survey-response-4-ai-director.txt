@@ -1,0 +1,7 @@
+PRE-WORKSHOP SURVEY (SYNTHETIC)
+Client: Meridian Retail Group (fictional)
+Respondent: Taylor Kim, Director of AI Programs
+
+AI goals: measurable tier-one deflection, copilot assistance for analysts, governance for prompt templates.
+Risk concerns: PII in tickets, auditability of automated decisions, union consultation for workflow changes.
+Success metric: 20% reduction in mean time to resolve for tier-one within two quarters.

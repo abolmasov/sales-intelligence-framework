@@ -1,0 +1,29 @@
+{
+  "templates": {
+    "enterprise": {
+      "versions": {
+        "1.0.0": {
+          "file": "templates/enterprise/v1.0.0.pptx",
+          "created": "2024-11-18T00:00:00Z",
+          "deprecated": false,
+          "changes": "Initial production template - Northstar Integrators branding"
+        }
+      },
+      "latest": "1.0.0",
+      "default": "1.0.0"
+    },
+    "default": {
+      "versions": {
+        "1.0.0": {
+          "file": "templates/default/v1.0.0.pptx",
+          "created": "2024-11-18T00:00:00Z",
+          "deprecated": false,
+          "changes": "Default fallback template"
+        }
+      },
+      "latest": "1.0.0",
+      "default": "1.0.0"
+    }
+  },
+  "default_template": "enterprise"
+}

@@ -1,0 +1,11 @@
+{
+  "name": "@sales-intelligence/shared-types",
+  "version": "1.0.0",
+  "description": "Shared TypeScript type definitions for Sales Intelligence Platform",
+  "main": "index.ts",
+  "types": "index.ts",
+  "private": true,
+  "keywords": ["types", "typescript", "shared"],
+  "author": "Sales Intelligence Team",
+  "license": "MIT"
+}
